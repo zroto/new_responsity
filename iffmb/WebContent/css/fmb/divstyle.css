@@ -1,0 +1,48 @@
+#draw{
+	background:#fff;
+	position:relative;
+	overflow:hidden;
+	width:100%;
+	height:1.1rem;
+}
+.box {
+	background: #fff;
+	width: 0px;
+	height: 0px;
+	position: absolute;
+	border:1px solid #95b8e7;
+	text-align:center;
+	cursor:pointer;
+}
+
+.div_top {
+	width: 100%;
+	height:25px;
+	background: #eee;
+	float:left;
+	cursor:move;
+}
+
+.btn{
+	width:23px;
+	height:23px;
+	background:#fff;
+	float:right;
+	text-align:center;
+	line-height:23px;
+	font-size:0.03rem;
+	font-weight: bold;
+	border:1px solid #eee;
+	
+}
+.div_center{
+	width:100%;
+	background-color:#95b8e726;
+	float:left;
+	text-align:center;
+}
+
+.font{
+	color:#161515;
+	font-size:0.06rem;
+}

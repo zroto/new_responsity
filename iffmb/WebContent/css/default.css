@@ -1,0 +1,94 @@
+﻿*{font-size:0.03rem; font-family:Tahoma,Verdana,微软雅黑,新宋体}
+body{background:#D2E0F2; }
+a{ color:Black; text-decoration:none;}
+a:hover{ color:Red; text-decoration:underline;}
+.textbox03 {border: #878787 1px solid;padding: 0.008rem 0.006rem;font:Verdana, Geneva, sans-serif,宋体;line-height: 0.03rem; background-color: #fff;  height: auto; font-size: 0.03rem;  font-weight: bold; width: 0.38rem; }
+
+.txt01{font:Verdana, Geneva, sans-serif,宋体;padding:0.006rem 0.004rem 0.004rem 0.004rem; border-width:1px; border-color:#ddd;  color:#000;}
+.txt {border: #878787 1px solid;padding: 0.008rem 0.006rem;font:Verdana, Geneva, sans-serif,宋体;line-height: 0.03rem; background-color: #fff;  height: auto; font-size: 0.03rem;}
+.footer{text-align:center;color:#15428B; margin:0rem; padding:0rem;line-height:0.046rem; font-weight:bold;overflow:hidden}
+
+.head a{color:White;text-decoration:underline;}
+
+.navlist{margin:0rem; padding:0.01rem;position:relative}
+.navlist li{ padding:0rem;}
+.navlist li a{line-height:0.05rem;}
+.navlist li div{margin:0px 0px;padding-left:0.02rem;padding-top:0.004rem; border:1px dashed #ffffff;}
+.navlist li div.hover{border:1px dashed #99BBE8; background:#E0ECFF;cursor:pointer;}
+.navlist li div.hover a{color:#416AA3;}
+.navlist li div.selected{border:1px solid #99BBE8; background:#E0ECFF;cursor:default;}
+.navlist li div.selected a{color:#416AA3; font-weight:bold;}
+
+
+.third_ul{ list-style-type:none;margin:0rem; padding:0rem; display:none;}
+.third_ul li{ padding-left:0.04rem;}
+
+.icon{ background:url(../images/tabicons.png) no-repeat;width:0.036rem; line-height:0.036rem; display:inline-block;}
+.icon-sys{ background-position:0rem -0.4rem;}
+.icon-set{ background-position:-0.76rem -0.4rem;}
+.icon-add{background-position: -0.04rem 0rem;}
+
+.icon-nav{background-position: -0.2rem -0.04rem; }
+.icon-users{background-position: -0.2rem -0.96rem;}
+.icon-role{background-position: -0.72rem -0.4rem;}
+.icon-set{background-position: -0.76rem -0.4rem;}
+.icon-log{background-position: -0.76rem -0.16rem;}
+
+.icon-delete{ background-position:-0.28rem -0.24rem;}
+.icon-edit{ background-position:-0.76rem -0.64rem;}
+.icon-magic{ background-position:0rem -1rem;}
+.icon-database{ background-position:-0.04rem -0.28rem;}
+
+
+.icon-arrow{ background:url('../images/arrow.gif') no-repeat right;}
+
+.panel-header{
+	background:linear-gradient(to left,#EFF5FF 0,#316d98 100%);
+	font-family: Tahoma,Verdana,微软雅黑,新宋体;
+}
+.panel-title{
+	font-size: 0.03rem;
+    color: #ffffff;
+    height:0.03rem;
+    line-height:0.03rem;
+}
+
+.tabs-wrap{
+	position: relative;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 21px;
+}
+	
+
+.tabs-header{
+	background: linear-gradient(to left, rgb(255, 255, 255) 0rem, #91b2cc 100%);
+	border-color: #fff;
+}
+
+.layout-split-north{
+	border-bottom: 0rem;
+}
+
+.layout-split-south{
+	border-top: 0rem;
+}
+
+.spancss{
+	font-size: 0.03rem;
+	margin-left: 0.02rem;
+	border-radius: 0.02rem;
+	background: #d0dee7;
+	padding: 0.01rem 0.04rem;
+	color:#fff;
+	cursor:pointer;
+}
+
+.spanname{
+	font-size:0.03rem;
+	margin-left:0.02rem;
+	cursor:pointer;
+}

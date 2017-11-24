@@ -1,0 +1,70 @@
+.input{
+	width: 59%;
+    margin-left: 0.02rem;
+    border: 1px solid #95b8e7;
+    border-radius: 0.01rem;
+    height: 0.05rem;
+    padding:0 0.02rem;
+    outline:none
+}
+
+.div{
+	width:30%;
+	height:40%;
+	border:1px solid;
+	float:left;
+	margin-left:0.01rem;
+	margin-top:0.01rem;
+}
+
+.addRow{
+	width: 10%;
+    margin-left: 0.47rem;
+}
+
+.editform{
+	border:2px dashed #95b8e7;
+	overflow: hidden;
+	margin-top:0.02rem;
+}
+
+.editform form {
+	width: 100%;
+	height:auto;
+	margin-top: 0.02rem;
+	text-align: center;
+}
+
+.state {
+	min-height: 0.1rem;
+	overflow:hidden; 
+	margin:-0.02rem auto;
+	line-height: 0.14rem;
+}
+
+.labelstate{
+	overflow:hidden;
+	float:left;
+	margin-left: 14%;
+}
+
+.selectdiv {
+	margin-top:0.04rem;
+	min-height: 0.08rem;
+}
+
+.selectdiv select{
+	margin-left: 0.04rem;
+    width: 20%;
+    float: left;
+    border: 1px solid #95b8e7;
+    height: 0.05rem;
+    border-radius: 0.01rem;
+    outline:none;
+}
+
+.selectdiv a img{
+	width:4%;
+	float:left;
+	margin:-0.004rem 0.02rem;
+}

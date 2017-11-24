@@ -1,0 +1,40 @@
+body{
+	background: #fff;
+}
+.north a{
+	position:absolute;
+	top: 17px
+}
+
+.north a:visited {
+	color:#000;
+	text-decoration:none;
+}
+
+.north a:visited {
+	color:#00FF00;
+	text-decoration:none;
+}
+.north a:hover {
+	color:#4e62df;
+	text-decoration:none;
+}
+.north a:active {
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+.north a font{
+	font-size: 0.05rem;
+	font-family:Tahoma,Verdana,微软雅黑,新宋体;
+}
+.north img{
+	width:5%;
+}
+
+#tiaodiv {
+    width: 25%;
+    margin-left: 65%;
+    margin-top:-3%;
+    padding:0.02rem 0.01rem;
+}

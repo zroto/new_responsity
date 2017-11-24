@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yifu.dao.UserDao">
+	
+	<sql id="userColumns">
+		a.UserId as 'userId',
+		a.UserName as 'userName',
+		a.PassWord as 'passWord',
+		a.CreateTime as 'createTime',
+		a.updateTime as 'updateTime'
+	</sql>  
+	
+	<insert id="saveUser" parameterType="cn.yifu.model.User">
+		INSERT INTO User (
+			UserId,
+			UserName,
+			PassWord,
+			CreateTime,
+			UpdateTime
+		)
+		values (
+			#{userId},
+			#{userName},
+			#{passWord},
+			#{createTime},
+			#{updateTime}
+		)
+	</insert>
+	
+	<update id="updateUser" parameterType="cn.yifu.model.User">
+		UPDATE User 
+		SET
+			UserName = #{userName},
+			PassWord = #{passWord},
+			CreateTime = #{createTime},
+			UpdateTime = #{updateTime}
+		WHERE UserId = #{userId}
+	</update>
+	
+	<select id="checkUser" parameterType="cn.yifu.model.User" resultType = "int">
+		SELECT COUNT(*) FROM User where UserName = #{userName} AND PassWord = #{passWord}		
+	</select>
+	
+	<select id ="checkUserName" parameterType="java.lang.String" resultType ="int">
+		SELECT COUNT(*) FROM User where userName = #{userName}
+	</select>
+	
+	<select id="getUserByName" parameterType="java.lang.String" resultType="cn.yifu.model.User">
+		SELECT 
+		<include refid="userColumns" />
+		FROM User a
+		WHERE 
+			a.UserName = #{userName}
+	</select>
+	
+</mapper>

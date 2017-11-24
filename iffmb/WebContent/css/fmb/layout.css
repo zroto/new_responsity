@@ -1,0 +1,30 @@
+.file {
+    display: inline-block;
+    background: #006699;
+    border-radius: 0.01rem;
+    overflow: hidden;
+    color: #fff;
+    text-decoration: none;
+    line-height: 0.05rem;
+    margin-left:-10%;
+    height:0.05rem;
+    width:10%;
+    text-align:center;
+    float:left;
+}
+.file input {
+    position: absolute;
+    opacity: 0;
+}
+
+#image{
+	width:55%;
+	margin-left:-45%;
+}
+
+#imgShow{
+	text-align: center;
+    float: left;
+    margin-top: 0.02rem;
+    width: 75%;
+}

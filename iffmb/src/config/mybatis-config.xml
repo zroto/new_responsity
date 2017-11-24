@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+        <!-- 打印查询语句 -->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    <typeAliases>
+        <typeAlias alias="DataSource" type="cn.yifu.model.DataSource"/>
+        <typeAlias alias="Charts" type="cn.yifu.model.Charts"/>
+        <typeAlias alias="ChartStyle" type="cn.yifu.model.ChartStyle"/>
+        <typeAlias alias="Layout" type="cn.yifu.model.Layout"/>
+        <typeAlias alias="StateStyle" type="cn.yifu.model.StateStyle"/>
+        <typeAlias alias="User" type="cn.yifu.model.User"/>
+    </typeAliases>
+    <mappers>
+        <mapper resource="cn/yifu/dao/DataSourceDao.xml" />
+        <mapper resource="cn/yifu/dao/ChartsDao.xml" />
+        <mapper resource="cn/yifu/dao/ChartStyleDao.xml" />
+        <mapper resource="cn/yifu/dao/LayoutDao.xml" />
+        <mapper resource="cn/yifu/dao/UserDao.xml" />
+    </mappers>
+</configuration>

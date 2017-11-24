@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yifu.dao.ChartsDao">
+	
+	<sql id="chartsColumns">
+		a.CT_VarName as 'ctVarName',
+		a.DS_VarName as 'dataSource.dsVarName',
+		a.DescName as 'descName',
+		a.ChartStyle as 'chartStyle.styleName',
+		a.SS_VarName as 'stateStyle.ssVarName',
+		a.Remark as 'remark',
+		a.SQLContent as 'sqlContent',
+		a.ResSql as 'resSql',
+		a.SelectSql as 'selectSql',
+		a.CreateTime as 'createTime',
+		a.UpdateTime as 'updateTime'
+	</sql>  
+	
+	<select id="getChartsById" parameterType="java.lang.String" resultType="cn.yifu.model.Charts">
+		SELECT 
+		cs.StyleDesc as 'chartStyle.styleDesc',
+		cs.JSFileName as 'chartStyle.jsFileName',
+		cs.Image as 'chartStyle.image',
+		ss.SSJson as 'stateStyle.ssJson',
+		<include refid="chartsColumns" />
+		FROM Charts a
+		LEFT JOIN ChartStyle cs ON  a.ChartStyle = cs.StyleName
+		LEFT JOIN StateStyle ss ON a.SS_VarName = ss.SS_VarName
+		<where>
+			<if test="_parameter != null || _parameter != ''">
+				a.CT_VarName = #{_parameter}
+			</if>
+		</where>
+	</select>
+	
+	<select id="loadCharts" parameterType="cn.yifu.model.Charts" resultType="java.util.HashMap">
+		SELECT 
+		cs.StyleDesc as 'chartStyle.styleDesc',
+		cs.JSFileName as 'chartStyle.jsFileName',
+		cs.Image as 'chartStyle.image',
+		ss.SSJson as 'stateStyle.ssJson',
+		<include refid="chartsColumns" />
+		FROM Charts a
+		LEFT JOIN ChartStyle cs ON  a.ChartStyle = cs.StyleName
+		LEFT JOIN StateStyle ss ON a.SS_VarName = ss.SS_VarName
+		ORDER BY a.CT_VarName
+		limit ${pageSize} offset ${start}
+	</select>
+	
+	<select id="getCsTotal" parameterType="cn.yifu.model.Charts" resultType="int">
+		SELECT count(*)
+		FROM Charts a
+		LEFT JOIN ChartStyle cs ON  a.ChartStyle = cs.StyleName
+		LEFT JOIN StateStyle ss ON a.SS_VarName = ss.SS_VarName
+		ORDER BY a.CT_VarName
+	</select>
+	
+	<select id="viewCharts" parameterType="java.lang.String" resultType="java.util.HashMap">
+		<if test="_parameter != null and _parameter != ''">
+			${_parameter}
+		</if>
+	</select>
+	
+	<select id="getCount" parameterType="java.lang.String" resultType="int">
+		<if test="_parameter != null and _parameter != ''">
+			${_parameter}
+		</if>
+	</select>
+	
+	<insert id="saveCharts" parameterType="cn.yifu.model.Charts">
+		INSERT INTO Charts (
+			CT_VarName,
+			DS_VarName,
+			DescName,
+			ChartStyle,
+			SS_VarName, 
+			Remark,
+			SQLContent, 
+			ResSql,
+			SelectSql,
+			CreateTime, 
+			UpdateTime
+		)
+		values (
+			#{ctVarName},
+			#{dataSource.dsVarName},
+			#{descName},
+			#{chartStyle.styleName},
+			#{stateStyle.ssVarName},
+			#{remark},
+			#{sqlContent},
+			#{resSql},
+			#{selectSql},
+			#{createTime},
+			#{updateTime}
+		)
+	</insert>
+	
+	<update id="updateCharts" parameterType="cn.yifu.model.Charts">
+		UPDATE Charts 
+		SET
+			DS_VarName = #{dataSource.dsVarName},
+			DescName = #{descName},
+			ChartStyle = #{chartStyle.styleName},
+			SS_VarName = #{stateStyle.ssVarName},
+			Remark = #{remark},
+			SQLContent = #{sqlContent},
+			ResSql = #{resSql},
+			SelectSql = #{selectSql},
+			CreateTime = #{createTime},
+			UpdateTime = #{updateTime}
+		WHERE 
+			CT_VarName = #{ctVarName}
+	</update>
+	
+	<delete id="deleteCharts" parameterType="java.lang.String">
+		DELETE FROM 
+			Charts
+		WHERE 
+			CT_VarName = #{ctVarName}
+	</delete>
+	
+	<select id="getTableName" resultType="java.util.HashMap">
+		 SELECT Name FROM SysObjects Where XType='U' ORDER BY Name
+	</select>
+	
+	<select id="getFeildByTable" parameterType="java.lang.String" resultType = "java.util.HashMap">
+		SELECT NAME FROM SYSCOLUMNS WHERE ID=OBJECT_ID(#{tableName})
+	</select>
+	
+</mapper>

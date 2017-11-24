@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yifu.dao.StateStyleDao">
+	
+	<sql id="stateStyleColumns">
+		a.SS_VarName as 'ssVarName',
+		a.DescName as 'descName',
+		a.SSJson as 'ssJson'
+	</sql>  
+	
+	<resultMap id="StateStyleMap" type="StateStyle">
+        <id column="SS_VarName" property="ssVarName" />
+        <result column="DescName" property="descName" />
+        <result column="SSJson" property="ssJson" />
+    </resultMap>
+    
+    <select id="getStateStyleById" parameterType="java.lang.String" resultType="cn.yifu.model.StateStyle">
+		SELECT 
+		<include refid="stateStyleColumns" />
+		FROM StateStyle a
+		<where>
+			<if test="_parameter != null || _parameter != ''">
+				a.SS_VarName = #{_parameter}
+			</if>
+		</where>
+	</select>
+	
+	<select id="loadStateStyle" resultMap="StateStyleMap">
+		SELECT 
+		<include refid="stateStyleColumns" />
+		FROM StateStyle a
+		Order by a.SS_VarName
+		limit ${pageSize} offset ${start}
+	</select>
+	
+	<select id="getSsTotal" parameterType="cn.yifu.model.StateStyle" resultType="int">
+		SELECT count(*) FROM StateStyle a
+	</select>
+	
+	<insert id="saveStateStyle" parameterType="cn.yifu.model.StateStyle">
+		INSERT INTO StateStyle(
+			SS_VarName,
+			DescName,
+			SSJson
+		)
+		values (
+			#{ssVarName},
+			#{descName},
+			#{ssJson}
+		)
+	</insert>
+	
+	<update id="updateStateStyle" parameterType="cn.yifu.model.StateStyle">
+		UPDATE StateStyle
+		SET 
+			DescName = #{descName},
+			SSJson = #{ssJson}
+		WHERE 
+			SS_VarName = #{ssVarName}
+	</update>
+	
+	<delete id="deleteStateStyle" parameterType="java.lang.String">
+		DELETE FROM StateStyle WHERE SS_VarName = #{ssVarName}
+	</delete>
+	
+</mapper>

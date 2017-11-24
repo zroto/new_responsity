@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yifu.dao.DataSourceDao">
+	
+	<sql id="dataSourceColumns">
+		a.DS_VarName as 'dsVarName',
+		a.DriverType as 'driverType',
+		a.DescName as 'descName',
+		a.HostAddr as 'hostAddr',
+		a.HostPort as 'hostPort',
+		a.DBName as 'dbName',
+		a.UserId as 'userName',
+		a.Password as 'password',
+		a.CreateTime as 'createTime',
+		a.UpdateTime as 'updateTime'
+	</sql>  
+	
+	<resultMap id="dataSourceMap" type="java.util.Map">
+        <id column="DS_VarName" property="dsVarName" />
+        <result column="DriverType" property="driverType" />
+        <result column="DescName" property="descName" />
+        <result column="HostAddr" property="hostAddr" />
+        <result column="HostPort" property="hostPort" />
+        <result column="DBName" property="dbName" />
+        <result column="UserId" property="userName" />
+        <result column="Password" property="password" />
+        <result column="CreateTime" property="createTime" />
+        <result column="UpdateTime" property="updateTime" />
+    </resultMap>
+
+
+    <select id="getDataSourceById" parameterType="java.lang.String" resultType="cn.yifu.model.DataSource">
+		SELECT
+		<include refid="dataSourceColumns" />
+		FROM DataSource a
+		<where>
+			<if test="_parameter != null || _parameter != ''">
+				a.DS_VarName = #{_parameter}
+			</if>
+		</where>
+	</select>
+	
+	<select id="loadDataSource" parameterType="cn.yifu.model.DataSource" resultMap="dataSourceMap">
+		SELECT 
+		<include refid="dataSourceColumns" />
+		FROM DataSource a
+		Order by a.DS_VarName 
+		limit ${pageSize} offset ${start}
+	</select>
+	
+	<select id="getDsTotal" parameterType="cn.yifu.model.DataSource" resultType="int">
+		SELECT count(*)
+		FROM DataSource a
+		Order by a.DS_VarName 
+	</select>
+	
+	<insert id="saveDataSource" parameterType="cn.yifu.model.DataSource">
+		INSERT INTO DataSource (
+			DS_VarName,
+			DriverType,
+			DescName,
+			HostAddr,
+			HostPort,
+			DBName,
+			UserId,
+			Password,
+			CreateTime,
+			UpdateTime
+		)
+		values(
+			#{dsVarName},
+			#{driverType},
+			#{descName},
+			#{hostAddr},
+			#{hostPort},
+			#{dbName},
+			#{userName},
+			#{password},
+			#{createTime},
+			#{updateTime}
+		)
+	</insert>
+	
+	<update id = "updateDataSource" parameterType="cn.yifu.model.DataSource">
+		UPDATE DataSource
+		SET 
+			DriverType = #{driverType},
+			DescName = #{descName},
+			HostAddr = #{hostAddr},
+			HostPort = #{hostPort},
+			DBName = #{dbName},
+			UserId = #{userName},
+			Password = #{password},
+			CreateTime = #{createTime},
+			UpdateTime = #{updateTime}
+		WHERE
+			DS_VarName = #{dsVarName}
+	</update>
+	
+	<delete id="deleteDataSource" parameterType = "java.lang.String">
+		<if test="_parameter != '' || _parameter != null">
+			DELETE FROM DataSource WHERE DS_VarName = #{_parameter}
+		</if>
+	</delete>	
+	
+</mapper>

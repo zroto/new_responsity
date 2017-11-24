@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yifu.dao.ChartStyleDao">
+	
+	<sql id="chartStyleColumns">
+		a.StyleName as 'styleName',
+		a.StyleDesc as 'styleDesc',
+		a.JSFileName as 'jsFileName',
+		a.Image as 'image',
+		a.IsShow as 'isShow'
+	</sql>  
+	
+	<resultMap id="chartStyleMap" type="chartStyle">
+        <id column="StyleName" property="styleName" />
+        <result column="StyleDesc" property="styleDesc" />
+        <result column="JSFileName" property="jsFileName" />
+    </resultMap>
+    
+     <select id="getChartStyleById" parameterType="java.lang.String" resultType="cn.yifu.model.ChartStyle">
+		SELECT
+		<include refid="chartStyleColumns" />
+		FROM ChartStyle a
+		<where>
+			<if test="_parameter != null || _parameter != ''">
+				a.StyleName = #{_parameter}
+			</if>
+		</where>
+	</select>
+	
+	<select id="loadChartStyle" parameterType="cn.yifu.model.ChartStyle" resultMap="chartStyleMap">
+		SELECT 
+		<include refid="chartStyleColumns" />
+		FROM ChartStyle a
+		<where>
+			<if test="isShow != null || isShow != ''">
+				a.IsShow = #{isShow}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="saveChartStyle" parameterType="cn.yifu.model.ChartStyle">
+		INSERT INTO ChartStyle(
+			StyleName,
+			StyleDesc,
+			JSFileName,
+			Image,
+			IsSHow
+		)values(
+			#{styleName},
+			#{styleDesc},
+			#{jsFileName}
+			#{image},
+			#{isShow}
+		)
+	</insert>
+	
+	<update id="updateChartStyle" parameterType="cn.yifu.model.ChartStyle">
+		UPDATE ChartStyle
+		SET
+			StyleDesc = #{styleDesc},
+			JSFileName = #{jsFileName},
+			Image = #{image},
+			IsShow = #{isShow}
+		WHERE
+			StyleName = #{styleName}
+	</update>
+	
+	<delete id="deleteChartStyle" parameterType="java.lang.String">
+		DELETE FROM ChartStyle WHERE StyleName = #{styleName}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yifu.dao.LayoutDao">
+	
+	<sql id="layoutColumns">
+		a.MenuId as 'menuId',
+		a.DescName as 'descName',
+		a.Remark as 'remark',
+		a.DivJson as 'divJson',
+		a.CreateTime as 'createTime',
+		a.UpdateTime as 'updateTime',
+		a.Icon as "icon"
+	</sql>  
+	
+	<resultMap id="LayoutMap" type="Layout">
+        <id column="MenuId" property="menuId" />
+        <result column="DescName" property="descName" />
+        <result column="Remark" property="remark" />
+        <result column="DivJson" property="divJson" />
+        <result column="CreateTime" property="createTime" />
+        <result column="UpdateTime" property="updateTime" />
+        <result column="Icon" property="icon" />
+    </resultMap>
+    
+    <select id="getLayoutById" parameterType="java.lang.String" resultType="cn.yifu.model.Layout">
+		SELECT
+		<include refid="layoutColumns" />
+		FROM Layout a
+		<where>
+			<if test="_parameter != null || _parameter != ''">
+				a.MenuId = #{_parameter}
+			</if>
+		</where>
+	</select>
+	
+	<select id="loadLayout" resultMap="LayoutMap">
+		SELECT 
+		<include refid="layoutColumns" />
+		FROM Layout a
+		ORDER BY a.MenuId
+		limit ${pageSize} offset ${start}
+	</select>
+	
+	<select id="getLoTotal" resultType="int">
+		SELECT COUNT(*) FROM Layout
+	</select>
+	
+	<select id="getLayoutByIcon" parameterType="java.lang.String" resultType="int">
+		SELECT COUNT(*) FROM Layout
+		where Icon = #{icon}
+	</select>
+	
+	<insert id="insertLayout" parameterType="cn.yifu.model.Layout">
+		INSERT INTO Layout(
+			MenuId,
+			DescName,
+			Remark,
+			DivJson,
+			CreateTime,
+			UpdateTime,
+			Icon
+		)values(
+			#{menuId},
+			#{descName},
+			#{remark},
+			#{divJson},
+			#{createTime},
+			#{updateTime},
+			#{icon}
+		)
+	</insert>
+	
+	<update id="updateLayout" parameterType="cn.yifu.model.Layout">
+		UPDATE Layout 
+		SET
+			DescName = #{descName},
+			Remark = #{remark},
+			DivJson = #{divJson},
+			CreateTime = #{createTime},
+			UpdateTime = #{updateTime},
+			Icon = #{icon}
+		WHERE 
+			MenuId = #{menuId}
+	</update>
+	
+	<delete id="deleteLayout" parameterType = "java.lang.String">
+		<if test="_parameter != '' || _parameter != null">
+			DELETE FROM Layout WHERE MenuId = #{_parameter}
+		</if>
+	</delete>	
+</mapper>
